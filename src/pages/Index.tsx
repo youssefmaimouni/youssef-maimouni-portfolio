@@ -216,7 +216,7 @@ const Index = () => {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {stats.map((stat) => (
-                    <div key={stat.label} className="glass rounded-xl p-4 text-center hover:border-primary/30 transition-all">
+                    <div key={stat.label} className="glass rounded-xl p-4 text-center hover:border-primary/30 transition-all cursor-pointer" onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>
                       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3"><stat.icon className="h-5 w-5 text-primary" /></div>
                       <p className="text-2xl font-bold gradient-text">{stat.value}</p>
                       <p className="text-xs text-muted-foreground">{stat.label}</p>
