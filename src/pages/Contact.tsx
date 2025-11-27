@@ -3,11 +3,14 @@ import { Send, Github, Linkedin, Mail, MapPin, Phone, Download } from "lucide-re
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,15 +19,14 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
+      title: t("contact.messageSent"),
+      description: t("contact.messageDescription"),
     });
 
-    setFormData({ name: "", email: "", message: "" });
+    setFormData({ name: "", email: "", subject: "", message: "" });
     setIsSubmitting(false);
   };
 
@@ -50,10 +52,10 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Let's <span className="gradient-text">Connect</span>
+            {t("contact.title")} <span className="gradient-text">{t("contact.connect")}</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind, want to discuss opportunities, or just say hello? I'd love to hear from you.
+            {t("contact.subtitle")}
           </p>
         </motion.div>
 
@@ -66,7 +68,7 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h2 className="text-xl font-semibold mb-6">Get in Touch</h2>
+              <h2 className="text-xl font-semibold mb-6">{t("contact.getInTouch")}</h2>
               <div className="space-y-4">
                 <a
                   href="mailto:youssefmaimouni03@gmail.com"
@@ -76,7 +78,7 @@ const Contact = () => {
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Email</p>
+                    <p className="text-sm text-muted-foreground">{t("contact.email")}</p>
                     <p className="font-medium group-hover:text-primary transition-colors">
                       youssefmaimouni03@gmail.com
                     </p>
@@ -104,14 +106,14 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Location</p>
-                    <p className="font-medium">Casablanca, Morocco</p>
+                    <p className="font-medium">{t("home.location")}</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Follow Me</h3>
+              <h3 className="text-lg font-semibold mb-4">{t("contact.followMe")}</h3>
               <div className="flex gap-3">
                 <a
                   href="https://github.com/youssefmaimouni"
@@ -133,32 +135,31 @@ const Contact = () => {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Download Resume</h3>
+              <h3 className="text-lg font-semibold mb-4">{t("contact.downloadResume")}</h3>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button variant="hero" asChild className="flex-1">
                   <a href="/MAIMOUNI_YOUSSEF_CV.pdf" download>
                     <Download className="mr-2 h-4 w-4" />
-                    English CV
+                    {t("contact.englishCV")}
                   </a>
                 </Button>
                 <Button variant="hero" asChild className="flex-1">
                   <a href="/Youssef_maimouni_CV_FR.pdf" download>
                     <Download className="mr-2 h-4 w-4" />
-                    CV Français
+                    {t("contact.frenchCV")}
                   </a>
                 </Button>
               </div>
             </div>
 
             <div className="glass rounded-xl p-6">
-              <h3 className="font-semibold mb-3">Looking for PFE Internship</h3>
+              <h3 className="font-semibold mb-3">{t("contact.lookingForPFE")}</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                I'm actively seeking a final-year internship (PFE) starting <span className="text-primary font-medium">February 2026</span> to 
-                design and deploy intelligent, high-impact AI solutions.
+                {t("contact.pfeDescription")}
               </p>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-sm text-green-500">Open for opportunities</span>
+                <span className="text-sm text-green-500">{t("contact.openForOpportunities")}</span>
               </div>
             </div>
           </motion.div>
@@ -171,11 +172,8 @@ const Contact = () => {
           >
             <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 space-y-5">
               <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Name
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  {t("contact.name")}
                 </label>
                 <input
                   type="text"
@@ -185,16 +183,13 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-foreground placeholder:text-muted-foreground"
-                  placeholder="Your name"
+                  placeholder={t("contact.namePlaceholder")}
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Email
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  {t("contact.email")}
                 </label>
                 <input
                   type="email"
@@ -204,32 +199,28 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-foreground placeholder:text-muted-foreground"
-                  placeholder="your@email.com"
+                  placeholder={t("contact.emailPlaceholder")}
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Subject
+                <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                  {t("contact.subject")}
                 </label>
                 <input
                   type="text"
                   id="subject"
                   name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-foreground placeholder:text-muted-foreground"
-                  placeholder="What's this about?"
+                  placeholder={t("contact.subjectPlaceholder")}
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Message
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  {t("contact.message")}
                 </label>
                 <textarea
                   id="message"
@@ -239,7 +230,7 @@ const Contact = () => {
                   required
                   rows={5}
                   className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-foreground placeholder:text-muted-foreground resize-none"
-                  placeholder="Tell me about your project or opportunity..."
+                  placeholder={t("contact.messagePlaceholder")}
                 />
               </div>
 
@@ -250,11 +241,9 @@ const Contact = () => {
                 className="w-full"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? (
-                  "Sending..."
-                ) : (
+                {isSubmitting ? t("contact.sending") : (
                   <>
-                    Send Message
+                    {t("contact.send")}
                     <Send className="ml-2 h-4 w-4" />
                   </>
                 )}

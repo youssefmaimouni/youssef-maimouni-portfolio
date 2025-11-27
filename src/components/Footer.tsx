@@ -1,7 +1,9 @@
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -14,11 +16,11 @@ const Footer = () => {
               <span className="gradient-text">YM</span>
             </Link>
             <nav className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
-              <Link to="/about" className="hover:text-primary transition-colors">About</Link>
-              <Link to="/skills" className="hover:text-primary transition-colors">Skills</Link>
-              <Link to="/projects" className="hover:text-primary transition-colors">Projects</Link>
-              <Link to="/experience" className="hover:text-primary transition-colors">Experience</Link>
-              <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
+              <Link to="/about" className="hover:text-primary transition-colors">{t("nav.about")}</Link>
+              <Link to="/skills" className="hover:text-primary transition-colors">{t("nav.skills")}</Link>
+              <Link to="/projects" className="hover:text-primary transition-colors">{t("nav.projects")}</Link>
+              <Link to="/experience" className="hover:text-primary transition-colors">{t("nav.experience")}</Link>
+              <Link to="/contact" className="hover:text-primary transition-colors">{t("nav.contact")}</Link>
             </nav>
           </div>
 
@@ -51,12 +53,12 @@ const Footer = () => {
 
         <div className="mt-6 pt-6 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <span>Built with</span>
+            <span>{t("footer.builtWith")}</span>
             <Heart className="h-4 w-4 text-destructive fill-destructive" />
-            <span>by</span>
+            <span>{t("footer.by")}</span>
             <span className="font-semibold text-foreground">Youssef Maimouni</span>
           </div>
-          <p>© {currentYear} All rights reserved.</p>
+          <p>© {currentYear} {t("footer.rights")}</p>
         </div>
       </div>
     </footer>
