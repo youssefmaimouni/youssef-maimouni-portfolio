@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -9,30 +8,47 @@ import LanguageSwitcher from "./LanguageSwitcher";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const [activeSection, setActiveSection] = useState("home");
   const { t } = useLanguage();
 
   const navItems = [
-    { label: t("nav.home"), href: "/" },
-    { label: t("nav.about"), href: "/about" },
-    { label: t("nav.skills"), href: "/skills" },
-    { label: t("nav.projects"), href: "/projects" },
-    { label: t("nav.experience"), href: "/experience" },
-    { label: t("nav.contact"), href: "/contact" },
+    { label: t("nav.home"), href: "#home" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.skills"), href: "#skills" },
+    { label: t("nav.projects"), href: "#projects" },
+    { label: t("nav.experience"), href: "#experience" },
+    { label: t("nav.contact"), href: "#contact" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Update active section based on scroll position
+      const sections = navItems.map(item => item.href.substring(1));
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
+  const scrollToSection = (href: string) => {
+    const sectionId = href.substring(1);
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  };
 
   return (
     <motion.header
@@ -47,18 +63,18 @@ const Navbar = () => {
     >
       <div className="container px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-xl font-bold">
+        <button onClick={() => scrollToSection("#home")} className="text-xl font-bold">
           <span className="gradient-text">YM</span>
-        </Link>
+        </button>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-6">
           {navItems.map((item) => (
-            <Link
+            <button
               key={item.href}
-              to={item.href}
+              onClick={() => scrollToSection(item.href)}
               className={`text-sm font-medium transition-colors relative group ${
-                location.pathname === item.href
+                activeSection === item.href.substring(1)
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
               }`}
@@ -66,18 +82,18 @@ const Navbar = () => {
               {item.label}
               <span
                 className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
-                  location.pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
+                  activeSection === item.href.substring(1) ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
-            </Link>
+            </button>
           ))}
         </nav>
 
         {/* Right side: Language + CTA */}
         <div className="hidden lg:flex items-center gap-4">
           <LanguageSwitcher />
-          <Button variant="gradient" size="sm" asChild>
-            <Link to="/contact">{t("nav.getInTouch")}</Link>
+          <Button variant="gradient" size="sm" onClick={() => scrollToSection("#contact")}>
+            {t("nav.getInTouch")}
           </Button>
         </div>
 
@@ -115,20 +131,20 @@ const Navbar = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Link
-                    to={item.href}
-                    className={`text-lg font-medium transition-colors py-2 block ${
-                      location.pathname === item.href
+                  <button
+                    onClick={() => scrollToSection(item.href)}
+                    className={`text-lg font-medium transition-colors py-2 block w-full text-left ${
+                      activeSection === item.href.substring(1)
                         ? "text-primary"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {item.label}
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
-              <Button variant="gradient" className="mt-4" asChild>
-                <Link to="/contact">{t("nav.getInTouch")}</Link>
+              <Button variant="gradient" className="mt-4" onClick={() => scrollToSection("#contact")}>
+                {t("nav.getInTouch")}
               </Button>
             </nav>
           </motion.div>

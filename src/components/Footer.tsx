@@ -1,10 +1,24 @@
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const navLinks = [
+    { label: t("nav.about"), section: "about" },
+    { label: t("nav.skills"), section: "skills" },
+    { label: t("nav.projects"), section: "projects" },
+    { label: t("nav.experience"), section: "experience" },
+    { label: t("nav.contact"), section: "contact" },
+  ];
 
   return (
     <footer className="py-8 border-t border-border/50">
@@ -12,15 +26,19 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo & Nav */}
           <div className="flex flex-col md:flex-row items-center gap-6">
-            <Link to="/" className="text-xl font-bold">
+            <button onClick={() => scrollToSection("home")} className="text-xl font-bold">
               <span className="gradient-text">YM</span>
-            </Link>
+            </button>
             <nav className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
-              <Link to="/about" className="hover:text-primary transition-colors">{t("nav.about")}</Link>
-              <Link to="/skills" className="hover:text-primary transition-colors">{t("nav.skills")}</Link>
-              <Link to="/projects" className="hover:text-primary transition-colors">{t("nav.projects")}</Link>
-              <Link to="/experience" className="hover:text-primary transition-colors">{t("nav.experience")}</Link>
-              <Link to="/contact" className="hover:text-primary transition-colors">{t("nav.contact")}</Link>
+              {navLinks.map((link) => (
+                <button
+                  key={link.section}
+                  onClick={() => scrollToSection(link.section)}
+                  className="hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </button>
+              ))}
             </nav>
           </div>
 
