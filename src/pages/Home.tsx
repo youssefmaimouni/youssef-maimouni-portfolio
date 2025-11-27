@@ -2,9 +2,12 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Download, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import profilePicture from "@/assets/profile-picture.jpg";
 
 const Home = () => {
+  const { t } = useLanguage();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,13 +61,13 @@ const Home = () => {
                 <img
                   src={profilePicture}
                   alt="Youssef Maimouni"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               {/* Status badge */}
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full glass text-xs text-muted-foreground whitespace-nowrap">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                Open for PFE – Feb 2026
+                {t("home.openForPFE")}
               </div>
             </motion.div>
 
@@ -73,7 +76,7 @@ const Home = () => {
               {/* Badge */}
               <motion.div variants={itemVariants} className="mb-4">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-muted-foreground">
-                  📍 Casablanca, Morocco
+                  📍 {t("home.location")}
                 </span>
               </motion.div>
 
@@ -82,15 +85,15 @@ const Home = () => {
                 variants={itemVariants}
                 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4"
               >
-                Hi, I'm{" "}
-                <span className="gradient-text">Youssef</span>
+                {t("home.greeting")}{" "}
+                <span className="gradient-text">{t("home.name")}</span>
               </motion.h1>
 
               <motion.p
                 variants={itemVariants}
                 className="text-xl md:text-2xl text-muted-foreground mb-4"
               >
-                Data Scientist & AI Engineer
+                {t("home.role")}
               </motion.p>
 
               {/* Sub-headline */}
@@ -98,11 +101,7 @@ const Home = () => {
                 variants={itemVariants}
                 className="text-base md:text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed"
               >
-                Specializing in{" "}
-                <span className="text-primary font-medium">NLP</span>,{" "}
-                <span className="text-secondary font-medium">Computer Vision</span>, and{" "}
-                <span className="text-foreground font-medium">Cloud Deployment</span>.
-                Building intelligent solutions that make a difference.
+                {t("home.description")}
               </motion.p>
 
               {/* CTA Buttons */}
@@ -112,14 +111,14 @@ const Home = () => {
               >
                 <Button variant="gradient" size="lg" asChild>
                   <Link to="/projects">
-                    View Projects
+                    {t("home.viewProjects")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button variant="hero" size="lg" asChild>
                   <a href="/MAIMOUNI_YOUSSEF_CV.pdf" download>
                     <Download className="mr-2 h-4 w-4" />
-                    Download CV
+                    {t("home.downloadCV")}
                   </a>
                 </Button>
               </motion.div>
@@ -164,7 +163,7 @@ const Home = () => {
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
         <Link to="/about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-          <span className="text-xs">Learn more</span>
+          <span className="text-xs">{t("home.learnMore")}</span>
           <ChevronDown className="h-5 w-5" />
         </Link>
       </motion.div>

@@ -1,15 +1,18 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Calendar, Award, Users, Briefcase, GraduationCap } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import profilePicture from "@/assets/profile-picture.jpg";
 
-const stats = [
-  { label: "Years Learning", value: "4+", icon: Calendar },
-  { label: "Projects Completed", value: "15+", icon: Briefcase },
-  { label: "Hackathons Won", value: "3", icon: Award },
-  { label: "Tech Communities", value: "2", icon: Users },
-];
-
 const About = () => {
+  const { t } = useLanguage();
+
+  const stats = [
+    { label: t("about.yearsLearning"), value: "4+", icon: Calendar },
+    { label: t("about.projectsCompleted"), value: "15+", icon: Briefcase },
+    { label: t("about.hackathonsWon"), value: "3", icon: Award },
+    { label: t("about.techCommunities"), value: "2", icon: Users },
+  ];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -38,10 +41,10 @@ const About = () => {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            About <span className="gradient-text">Me</span>
+            {t("about.title")} <span className="gradient-text">{t("about.me")}</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Passionate about turning data into actionable insights and building impactful AI solutions.
+            {t("about.subtitle")}
           </p>
         </motion.div>
 
@@ -60,17 +63,17 @@ const About = () => {
                     <img
                       src={profilePicture}
                       alt="Youssef Maimouni"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
                   <h2 className="text-xl font-bold">Youssef Maimouni</h2>
-                  <p className="text-primary text-sm">Data Scientist & AI Engineer</p>
+                  <p className="text-primary text-sm">{t("home.role")}</p>
                 </div>
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-sm">
                     <MapPin className="h-4 w-4 text-primary" />
-                    <span className="text-muted-foreground">Casablanca, Morocco</span>
+                    <span className="text-muted-foreground">{t("home.location")}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
                     <Phone className="h-4 w-4 text-primary" />
@@ -88,7 +91,7 @@ const About = () => {
 
                 <div className="mt-6 pt-6 border-t border-border">
                   <p className="text-xs text-muted-foreground text-center">
-                    Available for PFE Internship starting February 2026
+                    {t("about.availableForPFE")}
                   </p>
                 </div>
               </div>
@@ -107,23 +110,12 @@ const About = () => {
                   <span className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
                     👨‍💻
                   </span>
-                  Who I Am
+                  {t("about.whoIAm")}
                 </h3>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  <p>
-                    I'm a <span className="text-foreground font-medium">Master's student in Computer Science & Mathematics for Data Science</span> at ENSA Khouribga, 
-                    passionate about <span className="text-primary">Artificial Intelligence</span>, <span className="text-secondary">Machine Learning</span>, 
-                    NLP, and Computer Vision.
-                  </p>
-                  <p>
-                    I love building <span className="text-foreground">AI-powered systems</span> that connect data, algorithms, and real-world impact. 
-                    My experience ranges from developing computer vision pipelines for retail analytics to processing 52,000+ Arabic articles 
-                    for intelligent clustering.
-                  </p>
-                  <p>
-                    Beyond technical work, I'm actively involved in the tech community as a <span className="text-foreground font-medium">Project Manager at JLM ENSA Khouribga</span> and 
-                    <span className="text-foreground font-medium"> Director of Events & Logistics at ResearchX Club</span>.
-                  </p>
+                  <p>{t("about.bio1")}</p>
+                  <p>{t("about.bio2")}</p>
+                  <p>{t("about.bio3")}</p>
                 </div>
               </motion.div>
 
@@ -151,32 +143,24 @@ const About = () => {
                   <span className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">
                     🎯
                   </span>
-                  What I Do
+                  {t("about.whatIDo")}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 rounded-xl bg-muted/30">
-                    <h4 className="font-medium mb-2 text-primary">Machine Learning</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Supervised & unsupervised learning, CNN, LSTM, Transformers for real-world applications.
-                    </p>
+                    <h4 className="font-medium mb-2 text-primary">{t("about.ml")}</h4>
+                    <p className="text-sm text-muted-foreground">{t("about.mlDesc")}</p>
                   </div>
                   <div className="p-4 rounded-xl bg-muted/30">
-                    <h4 className="font-medium mb-2 text-secondary">NLP & LLMs</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Text mining, BERT, mT5, TF-IDF, RAG for intelligent text processing and generation.
-                    </p>
+                    <h4 className="font-medium mb-2 text-secondary">{t("about.nlp")}</h4>
+                    <p className="text-sm text-muted-foreground">{t("about.nlpDesc")}</p>
                   </div>
                   <div className="p-4 rounded-xl bg-muted/30">
-                    <h4 className="font-medium mb-2 text-primary">Computer Vision</h4>
-                    <p className="text-sm text-muted-foreground">
-                      YOLOv8, Mask R-CNN, ResNet-50, OpenCV for detection, segmentation, and classification.
-                    </p>
+                    <h4 className="font-medium mb-2 text-primary">{t("about.cv")}</h4>
+                    <p className="text-sm text-muted-foreground">{t("about.cvDesc")}</p>
                   </div>
                   <div className="p-4 rounded-xl bg-muted/30">
-                    <h4 className="font-medium mb-2 text-secondary">Cloud & Deployment</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Azure, AWS, Docker, Flask, FastAPI for scalable AI solutions deployment.
-                    </p>
+                    <h4 className="font-medium mb-2 text-secondary">{t("about.cloud")}</h4>
+                    <p className="text-sm text-muted-foreground">{t("about.cloudDesc")}</p>
                   </div>
                 </div>
               </motion.div>
@@ -187,7 +171,7 @@ const About = () => {
                   <span className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
                     🌍
                   </span>
-                  Languages
+                  {t("about.languages")}
                 </h3>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center gap-2">

@@ -3,20 +3,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Skills", href: "/skills" },
-  { label: "Projects", href: "/projects" },
-  { label: "Experience", href: "/experience" },
-  { label: "Contact", href: "/contact" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
+
+  const navItems = [
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.skills"), href: "/skills" },
+    { label: t("nav.projects"), href: "/projects" },
+    { label: t("nav.experience"), href: "/experience" },
+    { label: t("nav.contact"), href: "/contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,7 +55,7 @@ const Navbar = () => {
         <nav className="hidden lg:flex items-center gap-6">
           {navItems.map((item) => (
             <Link
-              key={item.label}
+              key={item.href}
               to={item.href}
               className={`text-sm font-medium transition-colors relative group ${
                 location.pathname === item.href
@@ -70,24 +73,28 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* CTA Button */}
-        <div className="hidden lg:block">
+        {/* Right side: Language + CTA */}
+        <div className="hidden lg:flex items-center gap-4">
+          <LanguageSwitcher />
           <Button variant="gradient" size="sm" asChild>
-            <Link to="/contact">Get in Touch</Link>
+            <Link to="/contact">{t("nav.getInTouch")}</Link>
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden p-2 text-foreground"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
+        {/* Mobile: Language + Menu */}
+        <div className="flex lg:hidden items-center gap-3">
+          <LanguageSwitcher />
+          <button
+            className="p-2 text-foreground"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -103,7 +110,7 @@ const Navbar = () => {
             <nav className="container px-6 py-6 flex flex-col gap-4">
               {navItems.map((item, index) => (
                 <motion.div
-                  key={item.label}
+                  key={item.href}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -121,7 +128,7 @@ const Navbar = () => {
                 </motion.div>
               ))}
               <Button variant="gradient" className="mt-4" asChild>
-                <Link to="/contact">Get in Touch</Link>
+                <Link to="/contact">{t("nav.getInTouch")}</Link>
               </Button>
             </nav>
           </motion.div>
