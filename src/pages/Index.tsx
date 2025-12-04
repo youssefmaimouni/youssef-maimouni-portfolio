@@ -5,6 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import profilePicture from "@/assets/profile-picture.jpg";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 // Certifications data
 const certifications = [
@@ -87,10 +88,31 @@ const Index = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    toast({ title: t("contact.messageSent"), description: t("contact.messageDescription") });
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+    
+    try {
+      const { error } = await supabase
+        .from("contact_messages")
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || "No subject",
+          message: formData.message,
+        });
+
+      if (error) throw error;
+
+      toast({ title: t("contact.messageSent"), description: t("contact.messageDescription") });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({ 
+        title: language === "en" ? "Error" : "Erreur", 
+        description: language === "en" ? "Failed to send message. Please try again." : "Échec de l'envoi. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
