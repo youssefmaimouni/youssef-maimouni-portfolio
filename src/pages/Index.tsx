@@ -120,7 +120,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 grid-pattern" />
@@ -252,7 +252,7 @@ const Index = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-16 sm:py-24 relative">
+      <section id="skills" className="py-16 sm:py-24 relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-30" />
         <div className="container px-4 sm:px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
@@ -298,7 +298,7 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16 sm:py-24 relative">
+      <section id="projects" className="py-16 sm:py-24 relative overflow-hidden">
         <div className="absolute inset-0"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gradient-radial from-primary/10 via-transparent to-transparent" /></div>
         <div className="container px-4 sm:px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
@@ -344,7 +344,7 @@ const Index = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-16 sm:py-24 relative">
+      <section id="experience" className="py-16 sm:py-24 relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30" />
         <div className="container px-4 sm:px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
@@ -409,7 +409,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 sm:py-24 relative">
+      <section id="contact" className="py-16 sm:py-24 relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30" />
         <div className="container px-4 sm:px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
