@@ -124,20 +124,20 @@ const Index = () => {
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 grid-pattern" />
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-[128px]" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/20 rounded-full blur-[128px]" />
+        <div className="absolute top-1/4 -left-16 md:-left-32 w-48 md:w-96 h-48 md:h-96 bg-primary/20 rounded-full blur-[80px] md:blur-[128px]" />
+        <div className="absolute bottom-1/4 -right-16 md:-right-32 w-48 md:w-96 h-48 md:h-96 bg-secondary/20 rounded-full blur-[80px] md:blur-[128px]" />
         
-        <motion.div className="absolute top-20 right-20 w-4 h-4 rounded-full bg-primary/60" animate={{ y: [0, -15, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
-        <motion.div className="absolute bottom-40 left-20 w-3 h-3 rounded-full bg-secondary/60" animate={{ y: [0, -20, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} />
+        <motion.div className="absolute top-20 right-4 md:right-20 w-3 md:w-4 h-3 md:h-4 rounded-full bg-primary/60 hidden sm:block" animate={{ y: [0, -15, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
+        <motion.div className="absolute bottom-40 left-4 md:left-20 w-2 md:w-3 h-2 md:h-3 rounded-full bg-secondary/60 hidden sm:block" animate={{ y: [0, -20, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} />
 
-        <div className="container relative z-10 px-6">
+        <div className="container relative z-10 px-4 sm:px-6">
           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-5xl mx-auto">
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
               <motion.div variants={itemVariants} className="relative">
-                <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/30 glow-gradient">
+                <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/30 glow-gradient">
                   <img src={profilePicture} alt="Youssef Maimouni" className="w-full h-full object-cover object-top" />
                 </div>
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full glass text-xs text-muted-foreground whitespace-nowrap">
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full glass text-[10px] sm:text-xs text-muted-foreground whitespace-nowrap">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                   {t("home.openForPFE")}
                 </div>
@@ -150,15 +150,15 @@ const Index = () => {
                   </span>
                 </motion.div>
 
-                <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
+                <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-3 sm:mb-4">
                   {t("home.greeting")} <span className="gradient-text">{t("home.name")}</span>
                 </motion.h1>
 
-                <motion.p variants={itemVariants} className="text-xl md:text-2xl text-muted-foreground mb-4">
+                <motion.p variants={itemVariants} className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-3 sm:mb-4">
                   {t("home.role")}
                 </motion.p>
 
-                <motion.p variants={itemVariants} className="text-base md:text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
+                <motion.p variants={itemVariants} className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl mb-6 sm:mb-8 leading-relaxed">
                   {t("home.description")}
                 </motion.p>
 
@@ -200,11 +200,11 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24">
-        <div className="container px-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("about.title")} <span className="gradient-text">{t("about.me")}</span></h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">{t("about.subtitle")}</p>
+      <section id="about" className="py-16 sm:py-24">
+        <div className="container px-4 sm:px-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">{t("about.title")} <span className="gradient-text">{t("about.me")}</span></h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">{t("about.subtitle")}</p>
           </motion.div>
 
           <div className="max-w-6xl mx-auto">
@@ -219,10 +219,10 @@ const Index = () => {
                     <p className="text-primary text-sm">{t("home.role")}</p>
                   </div>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-sm"><MapPin className="h-4 w-4 text-primary" /><span className="text-muted-foreground">{t("home.location")}</span></div>
-                    <div className="flex items-center gap-3 text-sm"><Phone className="h-4 w-4 text-primary" /><span className="text-muted-foreground">+212 682419203</span></div>
-                    <div className="flex items-center gap-3 text-sm"><Mail className="h-4 w-4 text-primary" /><span className="text-muted-foreground">youssefmaimouni03@gmail.com</span></div>
-                    <div className="flex items-center gap-3 text-sm"><GraduationCap className="h-4 w-4 text-primary" /><span className="text-muted-foreground">Master's Student, ENSA Khouribga</span></div>
+                    <div className="flex items-center gap-3 text-sm"><MapPin className="h-4 w-4 text-primary shrink-0" /><span className="text-muted-foreground truncate">{t("home.location")}</span></div>
+                    <div className="flex items-center gap-3 text-sm"><Phone className="h-4 w-4 text-primary shrink-0" /><span className="text-muted-foreground">+212 682419203</span></div>
+                    <div className="flex items-center gap-3 text-sm"><Mail className="h-4 w-4 text-primary shrink-0" /><span className="text-muted-foreground text-xs sm:text-sm truncate">youssefmaimouni03@gmail.com</span></div>
+                    <div className="flex items-center gap-3 text-sm"><GraduationCap className="h-4 w-4 text-primary shrink-0" /><span className="text-muted-foreground text-xs sm:text-sm">Master's Student, ENSA Khouribga</span></div>
                   </div>
                 </div>
               </motion.div>
@@ -252,12 +252,12 @@ const Index = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-24 relative">
+      <section id="skills" className="py-16 sm:py-24 relative">
         <div className="absolute inset-0 dot-pattern opacity-30" />
-        <div className="container px-6 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("skills.title")} <span className="gradient-text">{t("skills.techStack")}</span></h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">{t("skills.subtitle")}</p>
+        <div className="container px-4 sm:px-6 relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">{t("skills.title")} <span className="gradient-text">{t("skills.techStack")}</span></h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">{t("skills.subtitle")}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
@@ -298,15 +298,15 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 relative">
-        <div className="absolute inset-0"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-primary/10 via-transparent to-transparent" /></div>
-        <div className="container px-6 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("projects.title")} <span className="gradient-text">{t("projects.featured")}</span></h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">{t("projects.subtitle")}</p>
+      <section id="projects" className="py-16 sm:py-24 relative">
+        <div className="absolute inset-0"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gradient-radial from-primary/10 via-transparent to-transparent" /></div>
+        <div className="container px-4 sm:px-6 relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">{t("projects.title")} <span className="gradient-text">{t("projects.featured")}</span></h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">{t("projects.subtitle")}</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto mb-10 sm:mb-16">
             {featuredProjects.map((project, index) => (
               <motion.div key={project.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.15 }} whileHover={{ y: -8 }} className="group relative">
                 {project.badge && <div className="absolute -top-3 -right-3 flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-background text-xs font-semibold z-10"><Trophy className="h-3 w-3" /> 1st Place</div>}
@@ -344,15 +344,15 @@ const Index = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-24 relative">
+      <section id="experience" className="py-16 sm:py-24 relative">
         <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="container px-6 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("experience.title")} <span className="gradient-text">{t("experience.education")}</span></h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">{t("experience.subtitle")}</p>
+        <div className="container px-4 sm:px-6 relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">{t("experience.title")} <span className="gradient-text">{t("experience.education")}</span></h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">{t("experience.subtitle")}</p>
           </motion.div>
 
-          <div className="max-w-5xl mx-auto space-y-16">
+          <div className="max-w-5xl mx-auto space-y-10 sm:space-y-16">
             {/* Work */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <div className="flex items-center gap-3 mb-8"><div className="p-2.5 rounded-xl bg-primary/10 text-primary"><Briefcase className="h-5 w-5" /></div><h3 className="text-2xl font-bold">{t("experience.work")}</h3></div>
@@ -409,30 +409,30 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 relative">
+      <section id="contact" className="py-16 sm:py-24 relative">
         <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="container px-6 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("contact.title")} <span className="gradient-text">{t("contact.connect")}</span></h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">{t("contact.subtitle")}</p>
+        <div className="container px-4 sm:px-6 relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">{t("contact.title")} <span className="gradient-text">{t("contact.connect")}</span></h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">{t("contact.subtitle")}</p>
           </motion.div>
 
-          <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="space-y-8">
               <div>
                 <h3 className="text-xl font-semibold mb-6">{t("contact.getInTouch")}</h3>
                 <div className="space-y-4">
-                  <a href="mailto:youssefmaimouni03@gmail.com" className="flex items-center gap-4 p-4 glass rounded-xl hover:border-primary/30 transition-all group">
-                    <div className="p-2.5 rounded-lg bg-primary/10 text-primary"><Mail className="h-5 w-5" /></div>
-                    <div><p className="text-sm text-muted-foreground">{t("contact.email")}</p><p className="font-medium group-hover:text-primary transition-colors">youssefmaimouni03@gmail.com</p></div>
+                  <a href="mailto:youssefmaimouni03@gmail.com" className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 glass rounded-xl hover:border-primary/30 transition-all group">
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-primary/10 text-primary shrink-0"><Mail className="h-4 sm:h-5 w-4 sm:w-5" /></div>
+                    <div className="min-w-0"><p className="text-xs sm:text-sm text-muted-foreground">{t("contact.email")}</p><p className="font-medium group-hover:text-primary transition-colors text-sm sm:text-base truncate">youssefmaimouni03@gmail.com</p></div>
                   </a>
-                  <a href="tel:+212682419203" className="flex items-center gap-4 p-4 glass rounded-xl hover:border-primary/30 transition-all group">
-                    <div className="p-2.5 rounded-lg bg-primary/10 text-primary"><Phone className="h-5 w-5" /></div>
-                    <div><p className="text-sm text-muted-foreground">Phone</p><p className="font-medium group-hover:text-primary transition-colors">+212 682419203</p></div>
+                  <a href="tel:+212682419203" className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 glass rounded-xl hover:border-primary/30 transition-all group">
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-primary/10 text-primary shrink-0"><Phone className="h-4 sm:h-5 w-4 sm:w-5" /></div>
+                    <div><p className="text-xs sm:text-sm text-muted-foreground">Phone</p><p className="font-medium group-hover:text-primary transition-colors text-sm sm:text-base">+212 682419203</p></div>
                   </a>
-                  <div className="flex items-center gap-4 p-4 glass rounded-xl">
-                    <div className="p-2.5 rounded-lg bg-secondary/10 text-secondary"><MapPin className="h-5 w-5" /></div>
-                    <div><p className="text-sm text-muted-foreground">Location</p><p className="font-medium">{t("home.location")}</p></div>
+                  <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 glass rounded-xl">
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-secondary/10 text-secondary shrink-0"><MapPin className="h-4 sm:h-5 w-4 sm:w-5" /></div>
+                    <div><p className="text-xs sm:text-sm text-muted-foreground">Location</p><p className="font-medium text-sm sm:text-base">{t("home.location")}</p></div>
                   </div>
                 </div>
               </div>
