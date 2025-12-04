@@ -37,7 +37,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.whoIAm": "Who I Am",
     "about.bio1": "I'm Youssef Maimouni, a Master's student in Data Science specializing in AI and Big Data, passionate about Machine Learning, NLP, and Computer Vision.",
     "about.bio2": "I build AI-powered systems that transform complex data into actionable insights, from computer vision pipelines for retail analytics to clustering and summarizing 50,000+ Arabic articles.",
-    "about.bio3": "I enjoy working in collaborative, problem-solving environments and applying my skills to real-world challenges, delivering intelligent solutions with impact."
+    "about.bio3": "I enjoy working in collaborative, problem-solving environments and applying my skills to real-world challenges, delivering intelligent solutions with impact.",
     "about.whatIDo": "What I Do",
     "about.ml": "Machine Learning",
     "about.mlDesc": "Supervised & unsupervised learning, CNN, LSTM, Transformers for real-world applications.",
@@ -149,7 +149,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.whoIAm": "Qui suis-je",
     "about.bio1": "Je suis Youssef Maimouni, étudiant en Master en Science des Données, spécialisé en IA et Big Data, passionné par le Machine Learning, le NLP et la Vision par Ordinateur.",
     "about.bio2": "Je construis des systèmes IA qui transforment des données complexes en informations exploitables, des pipelines de vision pour l'analyse retail au clustering et résumé de plus de 50 000 articles arabes.",
-    "about.bio3": "J'aime travailler dans des environnements collaboratifs et orientés résolution de problèmes, en appliquant mes compétences à des projets concrets pour créer des solutions intelligentes à fort impact."
+    "about.bio3": "J'aime travailler dans des environnements collaboratifs et orientés résolution de problèmes, en appliquant mes compétences à des projets concrets pour créer des solutions intelligentes à fort impact.",
     "about.whatIDo": "Ce que je fais",
     "about.ml": "Machine Learning",
     "about.mlDesc": "Apprentissage supervisé et non supervisé, CNN, LSTM, Transformers pour des applications réelles.",
