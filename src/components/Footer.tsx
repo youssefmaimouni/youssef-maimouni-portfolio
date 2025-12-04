@@ -21,15 +21,15 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="py-8 border-t border-border/50">
-      <div className="container px-6">
+    <footer className="py-6 sm:py-8 border-t border-border/50">
+      <div className="container px-4 sm:px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo & Nav */}
           <div className="flex flex-col md:flex-row items-center gap-6">
             <button onClick={() => scrollToSection("home")} className="text-xl font-bold">
               <span className="gradient-text">YM</span>
             </button>
-            <nav className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+            <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
               {navLinks.map((link) => (
                 <button
                   key={link.section}
