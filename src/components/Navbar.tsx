@@ -55,13 +55,13 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 overflow-x-hidden ${
         isScrolled
           ? "py-3 glass border-b border-border/50"
-          : "py-5 bg-background/80 backdrop-blur-sm"
+          : "py-4 sm:py-5 bg-background/80 backdrop-blur-sm"
       }`}
     >
-      <div className="container px-6 flex items-center justify-between">
+      <div className="container px-4 sm:px-6 flex items-center justify-between max-w-full">
         {/* Logo */}
         <button onClick={() => scrollToSection("#home")} className="text-xl font-bold">
           <span className="gradient-text">YM</span>
@@ -123,7 +123,7 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="lg:hidden glass border-t border-border/50"
           >
-            <nav className="container px-6 py-6 flex flex-col gap-4">
+            <nav className="container px-4 sm:px-6 py-4 sm:py-6 flex flex-col gap-3 sm:gap-4">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.href}
